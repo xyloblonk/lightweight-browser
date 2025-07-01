@@ -1,263 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Xylo Browser Demo</title>
-<style>
-  /* Base dark theme */
-  body {
-    margin: 0;
-    background: #121212;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #e0e0e0;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-  /* Tabs bar */
-  #tabs {
-    display: flex;
-    background: #1f1f1f;
-    padding: 6px 10px;
-    align-items: center;
-    user-select: none;
-  }
-  .tab {
-    background: #2a2a2a;
-    color: #ccc;
-    border: none;
-    border-radius: 6px;
-    padding: 6px 14px;
-    margin-right: 6px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-  }
-  .tab.active {
-    background: #444;
-    color: #fff;
-  }
-  .tab .favicon {
-    width: 16px;
-    height: 16px;
-    margin-right: 6px;
-    filter: brightness(0) invert(1);
-  }
-  #new-tab {
-    background: #333;
-    color: #aaa;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  #new-tab:hover {
-    background: #4a4a4a;
-    color: #fff;
-  }
-  /* URL bar */
-  #bar {
-    display: flex;
-    background: #1f1f1f;
-    padding: 8px 10px;
-    align-items: center;
-  }
-  #url {
-    flex: 1;
-    padding: 8px 12px;
-    border-radius: 6px;
-    background: #2c2c2c;
-    color: #fff;
-    border: 1px solid #444;
-    outline: none;
-    font-size: 1rem;
-  }
-  #go {
-    margin-left: 10px;
-    padding: 8px 16px;
-    background: #3a3a3a;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    user-select: none;
-    font-weight: 600;
-  }
-  #go:hover {
-    background: #4a4a4a;
-  }
-  /* Content area */
-  #webviews {
-    flex: 1;
-    position: relative;
-    background: #121212;
-  }
-  iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-    background: #121212;
-    color-scheme: dark;
-  }
-  /* Fallback message for iframe failures */
-  .iframe-fallback {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #888;
-    font-style: italic;
-    text-align: center;
-  }
-</style>
-</head>
-<body>
-  <div id="tabs">
-    <button id="new-tab" class="tab" title="New Tab">+</button>
-  </div>
-  <div id="bar">
-    <input type="text" id="url" placeholder="Enter URL or search term" autocomplete="off" spellcheck="false" />
-    <button id="go">Go</button>
-  </div>
-  <div id="webviews"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Xylo Browser Demo</title>
+    <style>
+      body {
+        margin: 0;
+        background: #121212;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: #e0e0e0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      #tabs {
+        display: flex;
+        background: #1f1f1f;
+        padding: 6px 10px;
+        align-items: center;
+        user-select: none;
+      }
+      .tab {
+        background: #2a2a2a;
+        color: #ccc;
+        border: none;
+        border-radius: 6px;
+        padding: 6px 14px;
+        margin-right: 6px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+      }
+      .tab.active {
+        background: #444;
+        color: #fff;
+      }
+      .tab .favicon {
+        width: 16px;
+        height: 16px;
+        margin-right: 6px;
+        filter: brightness(0) invert(1);
+      }
+      #new-tab {
+        background: #333;
+        color: #aaa;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      #new-tab:hover {
+        background: #4a4a4a;
+        color: #fff;
+      }
+      #bar {
+        display: flex;
+        background: #1f1f1f;
+        padding: 8px 10px;
+        align-items: center;
+      }
+      #url {
+        flex: 1;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background: #2c2c2c;
+        color: #fff;
+        border: 1px solid #444;
+        outline: none;
+        font-size: 1rem;
+      }
+      #go {
+        margin-left: 10px;
+        padding: 8px 16px;
+        background: #3a3a3a;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        user-select: none;
+        font-weight: 600;
+      }
+      #go:hover {
+        background: #4a4a4a;
+      }
+      #webviews {
+        flex: 1;
+        position: relative;
+        background: #121212;
+      }
+      iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        background: #121212;
+        color-scheme: dark;
+      }
+      .iframe-fallback {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #888;
+        font-style: italic;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="tabs">
+      <button id="new-tab" class="tab" title="New Tab">+</button>
+    </div>
+    <div id="bar">
+      <input
+        type="text"
+        id="url"
+        placeholder="Enter URL or search term"
+        autocomplete="off"
+        spellcheck="false"
+      />
+      <button id="go">Go</button>
+    </div>
+    <div id="webviews"></div>
 
-<script>
-  let tabs = [];
-  let currentTab = -1;
+    <script>
+      let tabs = [];
+      let currentTab = -1;
 
-  const tabsContainer = document.getElementById("tabs");
-  const newTabBtn = document.getElementById("new-tab");
-  const urlInput = document.getElementById("url");
-  const goBtn = document.getElementById("go");
-  const webviews = document.getElementById("webviews");
+      const tabsContainer = document.getElementById("tabs");
+      const newTabBtn = document.getElementById("new-tab");
+      const urlInput = document.getElementById("url");
+      const goBtn = document.getElementById("go");
+      const webviews = document.getElementById("webviews");
+      function getFaviconUrl(url) {
+        try {
+          const u = new URL(url);
+          return `${u.origin}/favicon.ico`;
+        } catch {
+          return "";
+        }
+      }
 
-  // Helper to create a favicon from URL (simple)
-  function getFaviconUrl(url) {
-    try {
-      const u = new URL(url);
-      return `${u.origin}/favicon.ico`;
-    } catch {
-      return "";
-    }
-  }
+      function createTab(url = "https://duckduckgo.com") {
+        const index = tabs.length;
+        const btn = document.createElement("button");
+        btn.className = "tab";
+        btn.dataset.index = index;
+        btn.title = url;
+        const favicon = document.createElement("img");
+        favicon.className = "favicon";
+        favicon.src = getFaviconUrl(url);
+        favicon.onerror = () => {
+          favicon.style.display = "none";
+        };
+        btn.appendChild(favicon);
+        const textNode = document.createTextNode(`Tab ${index + 1}`);
+        btn.appendChild(textNode);
+        btn.onclick = () => switchTab(index);
+        tabsContainer.insertBefore(btn, newTabBtn);
+        const iframe = document.createElement("iframe");
+        iframe.src = url;
+        iframe.style.display = "none";
 
-  function createTab(url = "https://duckduckgo.com") {
-    const index = tabs.length;
+        iframe.addEventListener("error", () => {
+          showFallback(index, "Failed to load this page in iframe.");
+        });
 
-    // Create tab button
-    const btn = document.createElement("button");
-    btn.className = "tab";
-    btn.dataset.index = index;
-    btn.title = url;
+        iframe.addEventListener("load", () => {
+          removeFallback(index);
+        });
 
-    // Add favicon img
-    const favicon = document.createElement("img");
-    favicon.className = "favicon";
-    favicon.src = getFaviconUrl(url);
-    favicon.onerror = () => {
-      favicon.style.display = "none"; // hide if no favicon
-    };
-    btn.appendChild(favicon);
+        webviews.appendChild(iframe);
 
-    const textNode = document.createTextNode(`Tab ${index + 1}`);
-    btn.appendChild(textNode);
+        tabs.push({ btn, iframe, fallback: null });
+        switchTab(index);
+      }
 
-    btn.onclick = () => switchTab(index);
+      function switchTab(index) {
+        if (index < 0 || index >= tabs.length) return;
+        if (currentTab >= 0) {
+          tabs[currentTab].iframe.style.display = "none";
+          tabs[currentTab].btn.classList.remove("active");
+          removeFallback(currentTab);
+        }
+        currentTab = index;
+        tabs[currentTab].iframe.style.display = "block";
+        tabs[currentTab].btn.classList.add("active");
+        urlInput.value = tabs[currentTab].iframe.src || "";
+        urlInput.focus();
+        urlInput.select();
+      }
 
-    tabsContainer.insertBefore(btn, newTabBtn);
+      function navigateCurrentTab(url) {
+        if (currentTab < 0) return;
+        let target;
+        try {
+          target = new URL(url);
+        } catch {
+          target = new URL(
+            "https://duckduckgo.com/?q=" + encodeURIComponent(url)
+          );
+        }
+        tabs[currentTab].iframe.src = target.toString();
+        tabs[currentTab].btn.title = target.toString();
+        const favicon = tabs[currentTab].btn.querySelector(".favicon");
+        if (favicon) {
+          favicon.src = getFaviconUrl(target.toString());
+          favicon.style.display = "";
+        }
+      }
 
-    // Create iframe
-    const iframe = document.createElement("iframe");
-    iframe.src = url;
-    iframe.style.display = "none";
+      function showFallback(index, message) {
+        const tab = tabs[index];
+        if (!tab) return;
+        if (tab.fallback) return;
 
-    // Add fallback message on iframe load error (e.g. blocked by CSP)
-    iframe.addEventListener("error", () => {
-      showFallback(index, "Failed to load this page in iframe.");
-    });
+        const fallback = document.createElement("div");
+        fallback.className = "iframe-fallback";
+        fallback.textContent = message;
 
-    // If iframe fails silently, use onload + timer trick
-    iframe.addEventListener("load", () => {
-      // Hide fallback if shown
-      removeFallback(index);
-    });
+        tab.fallback = fallback;
+        webviews.appendChild(fallback);
+      }
 
-    webviews.appendChild(iframe);
+      function removeFallback(index) {
+        const tab = tabs[index];
+        if (!tab || !tab.fallback) return;
+        webviews.removeChild(tab.fallback);
+        tab.fallback = null;
+      }
 
-    tabs.push({ btn, iframe, fallback: null });
-    switchTab(index);
-  }
+      newTabBtn.onclick = () => createTab();
 
-  function switchTab(index) {
-    if (index < 0 || index >= tabs.length) return;
-    if (currentTab >= 0) {
-      tabs[currentTab].iframe.style.display = "none";
-      tabs[currentTab].btn.classList.remove("active");
-      removeFallback(currentTab);
-    }
-    currentTab = index;
-    tabs[currentTab].iframe.style.display = "block";
-    tabs[currentTab].btn.classList.add("active");
-    urlInput.value = tabs[currentTab].iframe.src || "";
-    urlInput.focus();
-    urlInput.select();
-  }
+      goBtn.onclick = () => {
+        const val = urlInput.value.trim();
+        if (!val) return;
+        navigateCurrentTab(val);
+      };
 
-  function navigateCurrentTab(url) {
-    if (currentTab < 0) return;
-    let target;
-    try {
-      target = new URL(url);
-    } catch {
-      // Treat as search query
-      target = new URL("https://duckduckgo.com/?q=" + encodeURIComponent(url));
-    }
-    tabs[currentTab].iframe.src = target.toString();
+      urlInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          goBtn.click();
+        }
+      });
 
-    // Update tab button title and favicon
-    tabs[currentTab].btn.title = target.toString();
-    const favicon = tabs[currentTab].btn.querySelector(".favicon");
-    if (favicon) {
-      favicon.src = getFaviconUrl(target.toString());
-      favicon.style.display = "";
-    }
-  }
-
-  function showFallback(index, message) {
-    const tab = tabs[index];
-    if (!tab) return;
-    if (tab.fallback) return; // already showing
-
-    const fallback = document.createElement("div");
-    fallback.className = "iframe-fallback";
-    fallback.textContent = message;
-
-    tab.fallback = fallback;
-    webviews.appendChild(fallback);
-  }
-
-  function removeFallback(index) {
-    const tab = tabs[index];
-    if (!tab || !tab.fallback) return;
-    webviews.removeChild(tab.fallback);
-    tab.fallback = null;
-  }
-
-  newTabBtn.onclick = () => createTab();
-
-  goBtn.onclick = () => {
-    const val = urlInput.value.trim();
-    if (!val) return;
-    navigateCurrentTab(val);
-  };
-
-  urlInput.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-      goBtn.click();
-    }
-  });
-
-  // Start with one tab
-  createTab();
-</script>
-</body>
+      createTab();
+    </script>
+  </body>
 </html>
