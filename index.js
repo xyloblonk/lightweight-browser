@@ -12,6 +12,8 @@ const path = require("path");
 const fetch = require("cross-fetch");
 const { ElectronBlocker } = require("@ghostery/adblocker-electron");
 const { autoUpdater } = require("electron-updater");
+require("dotenv").config();
+
 
 let mainWindow;
 let tabs = [];
@@ -99,8 +101,9 @@ async function createWindow() {
     width: 1400,
     height: 960,
     preload: path.join(__dirname, "preload.js"),
-    icon: path.join("icon.png"),
+    icon: path.join(__dirname, "icon.png"),
     webPreferences: {
+      sandbox: true,  
       nodeIntegration: false,
       contextIsolation: true,
     },
