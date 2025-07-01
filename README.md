@@ -11,6 +11,9 @@ Proof of resource usage:
 Demo in the app:
 ![App Demo Image](https://github.com/xyloblonk/lightweight-browser/blob/main/readme/img/image_2025-06-30_235150397.png?raw=true)
 
+## VirusTotal
+https://www.virustotal.com/gui/file/dd11416db3c9c2e94932dc9361739783fbdc49170b8e76fe1ac478353188db7b?nocache=1
+
 ## Why I Made This
 I got tired of browsers eating up all my resources, especially when gaming on low-end systems. So I built a no-bloat, privacy-minded browser that doesn’t sacrifice developer tools, localhost support, or modern features but still keeps your system snappy and secure.
 
