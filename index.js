@@ -8,6 +8,7 @@ const {
 const path = require("path");
 const fetch = require("cross-fetch");
 const { ElectronBlocker } = require("@ghostery/adblocker-electron");
+const { setupAutoUpdates } = require("./build.js");
 
 let mainWindow;
 let tabs = [];
@@ -35,7 +36,7 @@ async function setupAdblock() {
   blocker.enableBlockingInSession(session.defaultSession);
 }
 
-function createTab(url) {
+async function createTab(url) {
   const view = new BrowserView({
     webPreferences: {
       contextIsolation: true,
@@ -53,7 +54,7 @@ function createTab(url) {
   return index;
 }
 
-function switchTab(index) {
+async function switchTab(index) {
   if (index < 0 || index >= tabs.length) return;
 
   if (mainWindow.getBrowserView()) {
@@ -84,7 +85,7 @@ ipcMain.on("navigate", (_, url) => {
   view.webContents.loadURL(target);
 });
 
-function injectDarkAndSponsorBlock(view) {
+async function injectDarkAndSponsorBlock(view) {
   view.webContents.on("did-finish-load", async () => {
     view.webContents.insertCSS(`
       html, body {
@@ -138,3 +139,9 @@ function injectDarkAndSponsorBlock(view) {
 app.whenReady().then(createWindow);
 
 app.commandLine.appendSwitch("disable-gpu");
+
+setupAutoUpdates(mainWindow);
+
+ipcMain.on("restart-to-update", () => {
+  autoUpdater.quitAndInstall();
+});
