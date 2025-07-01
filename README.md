@@ -1,6 +1,8 @@
-
 # Lightweight Browser
 A blazing-fast, super-light Chromium-based browser using under 300MB RAM built for low-end PCs.
+
+## Demo Website
+https://xyloblonk.github.io/lightweight-browser/
 
 ## Why I Made This
 I got tired of browsers eating up all my resources, especially when gaming on low-end systems. So I built a no-bloat, privacy-minded browser that doesn’t sacrifice developer tools, localhost support, or modern features but still keeps your system snappy and secure.
