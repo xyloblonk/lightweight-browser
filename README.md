@@ -1,12 +1,14 @@
-[![Windows Build](https://github.com/xyloblonk/lightweight-browser/actions/workflows/windows-build.yml/badge.svg)](https://github.com/xyloblonk/lightweight-browser/actions/workflows/windows-build.yml)
-
 # Lightweight Browser
 A blazing-fast, super-light Chromium-based browser using under 300MB RAM built for low-end PCs.
 
 ## Demo Website
 There is a demo website but it does not function as a browser. It just simply shows what the app looks like.
 https://xyloblonk.github.io/lightweight-browser/
+
+Proof of resource usage:
 ![Windows Task Manager Demo](https://github.com/xyloblonk/lightweight-browser/blob/main/readme/img/image_2025-06-30_234811949.png?raw=true)
+
+Demo in the app:
 ![App Demo Image](https://github.com/xyloblonk/lightweight-browser/blob/main/readme/img/image_2025-06-30_235150397.png?raw=true)
 
 ## Why I Made This
