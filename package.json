@@ -4,9 +4,12 @@
   "main": "index.js",
   "description": "A lightweight browser made by XyloBlonk",
   "author": "XyloBlonk",
+  "type": "commonjs",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder --publish always"
+    "prodbuild": "electron-builder",
+    "devbuild": "electron-builder --publish always",
+    "lint": "eslint . --ext .js"
   },
   "build": {
     "files": [
@@ -46,7 +49,14 @@
     "electron-updater": "^6.6.2"
   },
   "devDependencies": {
+    "@eslint/js": "^9.30.1",
     "electron": "^25.3.0",
-    "electron-builder": "^24.8.0"
+    "electron-builder": "^24.8.0",
+    "eslint": "^9.30.1",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.5.1",
+    "globals": "^16.3.0",
+    "jest": "^30.0.3",
+    "prettier": "^3.6.2"
   }
 }
