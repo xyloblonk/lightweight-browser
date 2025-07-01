@@ -1,4 +1,4 @@
-[![Windows Build](https://github.com/xyloblonk/lightweight-browser/actions/workflows/windows-build.yml/badge.svg)](https://github.com/xylo-dev/lightweight-browser/actions/workflows/windows-build.yml)
+[![Windows Build](https://github.com/xyloblonk/lightweight-browser/actions/workflows/windows-build.yml/badge.svg)](https://github.com/xyloblonk/lightweight-browser/actions/workflows/windows-build.yml)
 
 # Lightweight Browser
 A blazing-fast, super-light Chromium-based browser using under 300MB RAM built for low-end PCs.
