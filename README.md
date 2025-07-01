@@ -1,3 +1,5 @@
+![Windows Task Manager Demo](https://github.com/xyloblonk/lightweight-browser/blob/main/readme/img/image_2025-06-30_234811949.png?raw=true)
+
 # Lightweight Browser
 A blazing-fast, super-light Chromium-based browser using under 300MB RAM built for low-end PCs.
 
