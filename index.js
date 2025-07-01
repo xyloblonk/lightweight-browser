@@ -233,7 +233,7 @@ async function setupAutoUpdates(mainWindow) {
       type: "info",
       buttons: [],
       title: "Checking for Updates",
-      message: "Xylo Browser is checking for updates...",
+      message: "Fate Browser is checking for updates...",
     });
   });
 
