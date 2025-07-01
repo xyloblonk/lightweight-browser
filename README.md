@@ -1,5 +1,5 @@
 # Lightweight Browser
-A blazing-fast, super-light Chromium-based browser using under 300MB RAM (Over time it will get around 500MB due to cache but the browser its self uses under 300MB in most scenarios) built for low-end PCs.
+A blazing-fast, super-light Chromium-based browser using under 300MB RAM (Over time it can get around 500MB due to cache but the browser its self uses under 300MB in pretty much every scenario, it's extremely difficult to push it over 300MB) built for low-end PCs.
 
 ## Demo Website
 There is a demo website but it does not function as a browser. It just simply shows what the app looks like.
