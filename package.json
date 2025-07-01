@@ -6,10 +6,22 @@
   "author": "XyloBlonk",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder"
+    "build": "electron-builder --publish always"
   },
   "build": {
+    "files": [
+      "**/*",
+      "build.js"
+    ],
     "appId": "com.xylobrowser.app",
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "category": "Network",
+      "icon": "icon.png"
+    },
     "productName": "XyloBrowser",
     "publish": [
       {
@@ -20,7 +32,7 @@
     ],
     "win": {
       "target": "nsis",
-      "icon": "icon.ico"
+      "icon": "icon.png"
     },
     "nsis": {
       "oneClick": false,
