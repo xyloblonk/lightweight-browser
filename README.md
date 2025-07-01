@@ -42,8 +42,6 @@ This browser is your no-nonsense, fast alternative that puts performance and pri
 
 - Built-in AdBlocker & SponsorBlock integration using ghostery adblocker and custom SponsorBlock injection for YouTube videos
 
-- DuckDuckGo as default search engine for privacy and reduced tracking
-
 - Smart URL input: navigates directly or searches via DuckDuckGo
 
 - LocalStorage-based form caching to keep you logged in across sessions (implemented on a per-site basis)
@@ -99,3 +97,6 @@ Please contact me if you intend to use this project commercially.
 - The quickest way is to contact me in my discord @ https://discord.gg/fatesocial
 - You can email me but expect a heavy delay since I rarely read emails, my email is contact@xyloblonk.xyz
 - If you have a bug please create a github issue
+
+## Want to donate?
+View the wiki @ https://github.com/xyloblonk/lightweight-browser/wiki/Supporting
