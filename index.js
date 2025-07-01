@@ -4,6 +4,8 @@ const {
   BrowserView,
   ipcMain,
   session,
+  Menu,
+  shell,
 } = require("electron");
 const path = require("path");
 const fetch = require("cross-fetch");
@@ -15,10 +17,88 @@ let mainWindow;
 let tabs = [];
 let currentTab = 0;
 
+const menuTemplate = [
+  {
+    label: "File",
+    submenu: [
+      {
+        label: "Quit",
+        accelerator: "CmdOrCtrl+Q",
+        role: "quit",
+      },
+    ],
+  },
+  {
+    label: "View",
+    submenu: [
+      {
+        label: "Toggle Developer Tools",
+        accelerator: "F12",
+        click: (_, focusedWindow) => {
+          if (focusedWindow) focusedWindow.webContents.toggleDevTools();
+        },
+      },
+      { role: "reload" },
+      { role: "togglefullscreen" },
+    ],
+  },
+  {
+    label: "Help",
+    submenu: [
+      {
+        label: "Report an Issue",
+        click: () => {
+          shell.openExternal(
+            "https://github.com/yourusername/lightweight-browser/issues"
+          );
+        },
+      },
+      {
+        label: "GitHub Repo",
+        click: () => {
+          shell.openExternal(
+            "https://github.com/xyloblonk/lightweight-browser"
+          );
+        },
+      },
+      {
+        label: "Creator Website",
+        click: () => {
+          shell.openExternal("https://xyloblonk.xyz");
+        },
+      },
+      {
+        label: "Hypixel Thread",
+        click: () => {
+          shell.openExternal(
+            "https://hypixel.net/threads/i-made-a-lightweight-browser.5942586/#post-41059397"
+          );
+        },
+      },
+      {
+        label: "Discord Server",
+        click: () => {
+          shell.openExternal("https://discord.gg/fatesocial");
+        },
+      },
+      { type: "separator" },
+      {
+        label: "About",
+        click: () => {
+          shell.openExternal(
+            "https://github.com/xyloblonk/lightweight-browser"
+          );
+        },
+      },
+    ],
+  },
+];
+
 async function createWindow() {
   mainWindow = new BrowserWindow({
     width: 1400,
     height: 960,
+    icon: path.join(__dirname, "icon.png"),
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
@@ -31,7 +111,7 @@ async function createWindow() {
 
   mainWindow.loadFile("index.html");
 
-  createTab("https://duckduckgo.com");
+  createTab("https://google.com");
 }
 
 async function setupAdblock() {
@@ -72,7 +152,7 @@ async function switchTab(index) {
 }
 
 ipcMain.handle("new-tab", () => {
-  return createTab("https://duckduckgo.com");
+  return createTab("https://google.com");
 });
 
 ipcMain.on("switch-tab", (_, index) => {
@@ -84,7 +164,7 @@ ipcMain.on("navigate", (_, url) => {
   const isURL = url.startsWith("http://") || url.startsWith("https://");
   const target = isURL
     ? url
-    : `https://duckduckgo.com/?q=${encodeURIComponent(url)}`;
+    : `https://google.com/?q=${encodeURIComponent(url)}`;
   view.webContents.loadURL(target);
 });
 
@@ -139,11 +219,15 @@ async function injectDarkAndSponsorBlock(view) {
   });
 }
 
-app.whenReady().then(createWindow);
+app.whenReady().then(() => {
+  const menu = Menu.buildFromTemplate(menuTemplate);
+  Menu.setApplicationMenu(menu);
+  createWindow();
+});
 
 app.commandLine.appendSwitch("disable-gpu");
 
-function setupAutoUpdates(mainWindow) {
+async function setupAutoUpdates(mainWindow) {
   autoUpdater.on("checking-for-update", () => {
     dialog.showMessageBox(mainWindow, {
       type: "info",
