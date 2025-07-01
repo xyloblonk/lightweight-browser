@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Xylo Browser</title>
+  <style>
+    body {
+      margin: 0;
+      background: #121212;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    #tabs {
+      display: flex;
+      align-items: center;
+      background: #1f1f1f;
+      padding: 6px 10px;
+    }
+
+    .tab {
+      background: #2a2a2a;
+      color: #ccc;
+      border: none;
+      border-radius: 6px;
+      padding: 6px 14px;
+      margin-right: 6px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .tab.active {
+      background: #444;
+      color: #fff;
+    }
+
+    #new-tab {
+      background: #333;
+      color: #aaa;
+      font-weight: bold;
+    }
+
+    #new-tab:hover {
+      background: #4a4a4a;
+      color: #fff;
+    }
+
+    #bar {
+      display: flex;
+      background: #1f1f1f;
+      padding: 8px 10px;
+      align-items: center;
+    }
+
+    #url {
+      flex: 1;
+      padding: 8px 12px;
+      border-radius: 6px;
+      background: #2c2c2c;
+      color: #fff;
+      border: 1px solid #444;
+      outline: none;
+    }
+
+    #go {
+      margin-left: 10px;
+      padding: 8px 16px;
+      background: #3a3a3a;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    #go:hover {
+      background: #4a4a4a;
+    }
+  </style>
+</head>
+<body>
+  <div id="tabs">
+    <button id="new-tab" class="tab">+</button>
+  </div>
+  <div id="bar">
+    <input type="text" id="url" placeholder="Search or enter URL..." />
+    <button id="go">Go</button>
+  </div>
+  <script src="renderer.js"></script>
+</body>
+</html>
