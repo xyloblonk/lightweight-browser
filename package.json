@@ -1,6 +1,6 @@
 {
   "name": "xylo-browser",
-  "version": "1.0.0-TEST",
+  "version": "1.0.0",
   "main": "index.js",
   "description": "A lightweight browser made by XyloBlonk",
   "author": "XyloBlonk",
