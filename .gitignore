@@ -1,0 +1,21 @@
+# Node dependencies
+node_modules/
+package-lock.json
+
+# Environment variables
+.env
+
+# Readme build artifacts or image folders
+readme.md
+readme/
+readme/img/
+
+# OS / IDE junk
+.DS_Store
+Thumbs.db
+*.log
+
+# Electron build output
+dist/
+out/
+*.asar
