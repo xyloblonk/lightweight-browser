@@ -1,7 +1,5 @@
 const { ipcRenderer } = require("electron");
 
-let currentTab = 0;
-
 const tabsContainer = document.getElementById("tabs");
 const newTabBtn = document.getElementById("new-tab");
 const urlInput = document.getElementById("url");
@@ -19,7 +17,6 @@ async function addTabButton(index) {
       .forEach((t) => t.classList.remove("active"));
     btn.classList.add("active");
     ipcRenderer.send("switch-tab", index);
-    currentTab = index;
   };
 
   tabsContainer.insertBefore(btn, newTabBtn);
@@ -33,7 +30,6 @@ async function addTabButton(index) {
 newTabBtn.onclick = () => {
   ipcRenderer.invoke("new-tab").then((index) => {
     addTabButton(index);
-    currentTab = index;
   });
 };
 
@@ -48,13 +44,6 @@ urlInput.addEventListener("keydown", (e) => {
 
 window.addEventListener("DOMContentLoaded", () => {
   addTabButton(0);
-});
-
-ipcRenderer.invoke("get-favicon", index).then((src) => {
-  const img = document.createElement("img");
-  img.src = src;
-  img.className = "favicon";
-  btn.prepend(img);
 });
 
 ipcRenderer.on("update-available", () => {
