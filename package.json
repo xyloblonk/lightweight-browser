@@ -1,5 +1,5 @@
 {
-  "name": "xylo-browser",
+  "name": "fate-browser",
   "version": "1.0.0",
   "main": "index.js",
   "description": "A lightweight browser made by XyloBlonk",
@@ -13,7 +13,7 @@
       "**/*",
       "build.js"
     ],
-    "appId": "com.xylobrowser.app",
+    "appId": "com.fatebrowser.app",
     "linux": {
       "target": [
         "AppImage",
@@ -22,7 +22,7 @@
       "category": "Network",
       "icon": "icon.png"
     },
-    "productName": "XyloBrowser",
+    "productName": "FateBrowser",
     "publish": [
       {
         "provider": "github",
