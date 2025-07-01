@@ -6,11 +6,11 @@ const {
   session,
   Menu,
   shell,
+  dialog,
 } = require("electron");
 const path = require("path");
 const fetch = require("cross-fetch");
 const { ElectronBlocker } = require("@ghostery/adblocker-electron");
-const fs = require("fs");
 const { autoUpdater } = require("electron-updater");
 
 let mainWindow;
@@ -98,10 +98,11 @@ async function createWindow() {
   mainWindow = new BrowserWindow({
     width: 1400,
     height: 960,
-    icon: path.join(__dirname, "icon.png"),
+    preload: path.join(__dirname, "preload.js"),
+    icon: path.join("icon.png"),
     webPreferences: {
-      nodeIntegration: true,
-      contextIsolation: false,
+      nodeIntegration: false,
+      contextIsolation: true,
     },
   });
 
