@@ -12,8 +12,6 @@ const path = require("path");
 const fetch = require("cross-fetch");
 const { ElectronBlocker } = require("@ghostery/adblocker-electron");
 const { autoUpdater } = require("electron-updater");
-require("dotenv").config();
-
 
 let mainWindow;
 let tabs = [];
