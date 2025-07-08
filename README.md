@@ -94,7 +94,6 @@ Open source for personal and non-commercial use.
 Please contact me if you intend to use this project commercially.
 
 ## Contact
-- The quickest way is to contact me in my discord @ https://discord.gg/fatesocial
 - You can email me but expect a heavy delay since I rarely read emails, my email is contact@xyloblonk.xyz
 - If you have a bug please create a github issue
 
